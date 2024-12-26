@@ -1,22 +1,22 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
-import router from './router'
+import { createApp } from "vue";
+import "./style.css";
+import App from "./App.vue";
+import router from "../src/router/index";
 
-import vue3GoogleLogin from 'vue3-google-login'
+import vue3GoogleLogin from "vue3-google-login";
 
-import { createPinia } from 'pinia'
-import { createPersistedState } from 'pinia-plugin-persistedstate'
+import { createPinia } from "pinia";
+import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 
-const pinia = createPinia()
-pinia.use(createPersistedState)
+const pinia = createPinia();
+pinia.use(piniaPluginPersistedstate);
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.use(pinia)
-app.use(router)
+app.use(pinia);
+app.use(router);
 app.use(vue3GoogleLogin, {
     clientId: "523109257112-gmu21h7eit1ikqipkcio7kbas50nb0hl.apps.googleusercontent.com",
-})
+});
 
-app.mount('#app')
+app.mount("#app");
