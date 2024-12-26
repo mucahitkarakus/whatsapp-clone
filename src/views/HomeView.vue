@@ -3,10 +3,10 @@
         <div id="Header" class="fixed w-[420px] z-10">
 
             <div class="bg-[#F0F0F0] w-full flex justify-between items-center px-3 py-2">
-                <img class="rounded-full ml-1 w-10" src="https://random.imagecdn.app/100/100" alt="" />
+                <img class="rounded-full ml-1 w-10" :src="userStore.picture || ''" alt="" />
                 <div class="flex items-center justify-center">
                     <AccountGroupIcon fillColor="#515151" class="mr-6" />
-                    <DotsVerticalIcon fillColor="#515151" class=" cursor-pointer" />
+                    <DotsVerticalIcon @click="logout" fillColor="#515151" class=" cursor-pointer" />
                 </div>
             </div>
 
@@ -64,15 +64,27 @@
 
 <script setup>
     import ChatsView from "./ChatsView.vue";
+    import FindFriendsView from "./FindFriends.vue";
+    import MessageView from "./MessageView.vue";
+    
     import AccountGroupIcon from "vue-material-design-icons/AccountGroup.vue";
     import DotsVerticalIcon from "vue-material-design-icons/DotsVertical.vue";
     import MagnifyIcon from "vue-material-design-icons/Magnify.vue";
     import { ref } from "vue";
-    import MessageView from "./MessageView.vue";
-    import FindFriendsView from "./FindFriends.vue";
+
+    import { useUserStore } from '../store/user-store';
+    import { useRouter } from 'vue-router';
+    const router = useRouter()
+    const userStore = useUserStore()
 
     let open = ref(true)
     let showFindFriends = ref(true)
+    const logout = () => {
+        let res = confirm('Are you sure u want to logout?')
+    
+        if(res) userStore.logout() ; router.push("/login")
+    }
+
 </script>
 
 <style lang="scss" scoped>

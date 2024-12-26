@@ -22,18 +22,14 @@
 </template>
 
 <script setup>
-import axios from 'axios';
+import { useUserStore } from '../store/user-store';
+import { useRouter } from 'vue-router';
+const userStore = useUserStore()
+const router = useRouter()
 
 const callback = async (response) => {
-    console.log(response);  
-    try {
-        let res = await axios.post("http://localhost:4001/api/google-login", {
-            token: response.credential
-        })
-        console.log(res.data)
-    } catch (error) {
-        console.error("Hata:", error);
-    }
+       await userStore.getUserDetailsFromGoogle(response)
+       setTimeout(() => {router.push('/')}, 200)
 };
 
 
