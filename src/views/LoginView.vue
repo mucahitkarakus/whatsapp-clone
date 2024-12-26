@@ -28,8 +28,9 @@ const callback = async (response) => {
     console.log(response);  
     try {
         let res = await axios.post("http://localhost:4001/api/google-login", {
-            token: response.credential,
-        });
+            token: response.credential
+        })
+        console.log(res.data)
     } catch (error) {
         console.error("Hata:", error);
     }
