@@ -64,6 +64,7 @@
     import DotsVerticalIcon from "vue-material-design-icons/DotsVertical.vue";
     import MagnifyIcon from "vue-material-design-icons/Magnify.vue";
     import { ref } from "vue";
+    import MessageView from "./MessageView.vue";
 
     let open = ref(true)
 </script>
